@@ -29,3 +29,26 @@ else:
         plt.title(titles[i])
         plt.axis('off')
     plt.show()
+
+import cv2 
+import matplotlib.pyplot as plt
+# Đọc ảnh màu (BGR)
+img = cv2.imread('cat.jpg')
+if img is None:
+    print ("Không thể tải file!")
+else:
+    img_rgb = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+# Áp dụng làm mờ với cái kernel khác nhau
+blur_3x3 = cv2.blur(img_rgb, (3,3))
+blur_5x5 = cv2.blur(img_rgb, (5,5))
+blur_9x9 = cv2.blur(img_rgb, (9,9))
+# Hiển thị kết quả
+titles = ["Ảnh gốc", "Blur 3x3", "Blur 5x5", "Blur 9x9"]
+images = [img_rgb, blur_3x3, blur_5x5, blur_9x9]
+plt.figure(figsize=(10,8))
+for i in range(4):
+    plt.subplot(2,2,i+1)
+    plt.imshow(images[i])
+    plt.title(titles[i])
+    plt.axis("off")
+plt.show()
